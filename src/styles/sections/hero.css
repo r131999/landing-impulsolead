@@ -1,0 +1,85 @@
+.hero {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .hero__inner {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.hero__title {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-weight: var(--weight-heading-strong);
+  max-width: 16ch;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-md);
+  max-width: 46ch;
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+.hero__copy .btn {
+  margin-top: var(--space-lg);
+}
+
+.hero__visual {
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Funil (pipeline de estágios + lead em movimento) --- */
+
+.funnel {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xs);
+  padding: var(--space-lg) var(--space-sm) var(--space-2xl);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.funnel__stage {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-2xs);
+  min-height: 92px;
+  display: flex;
+  align-items: flex-end;
+  background: var(--color-bg);
+}
+
+.funnel__stage-label {
+  font-size: 0.7rem;
+  font-weight: var(--weight-body-strong);
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+.funnel__lead {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-text);
+  box-shadow: 0 0 0 6px rgba(241, 245, 249, 0.12);
+  transform: translate(-50%, -50%);
+  top: 88%;
+  left: 12.5%;
+}

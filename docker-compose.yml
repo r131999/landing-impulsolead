@@ -1,0 +1,18 @@
+services:
+  landing:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: impulsolead-landing:latest
+    container_name: impulsolead-landing
+    restart: unless-stopped
+    ports:
+      # Publica só em localhost: o nginx do host é quem expõe o domínio publicamente.
+      # HOST_PORT é definido num .env local, não versionado — escolha uma porta livre
+      # na VPS (ver deploy/DEPLOY.md) antes de subir o container.
+      - "127.0.0.1:${HOST_PORT:-8080}:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

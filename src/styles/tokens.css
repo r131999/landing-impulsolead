@@ -1,0 +1,43 @@
+:root {
+  /* Paleta ImpulsoLead — alto contraste, sem tons pastel */
+  --color-bg: #0B1120;
+  --color-bg-elevated: #1E293B;
+  --color-text: #F1F5F9;
+  --color-text-muted: #94A3B8;
+
+  --color-border: rgba(148, 163, 184, 0.22);
+  --color-border-strong: rgba(148, 163, 184, 0.4);
+
+  /* Botão de alto contraste: claro sobre fundo escuro, sem introduzir uma cor fora da paleta */
+  --color-accent-bg: var(--color-text);
+  --color-accent-text: var(--color-bg);
+
+  --font-heading: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-body: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
+
+  --weight-heading: 800;
+  --weight-heading-strong: 900;
+  --weight-body: 400;
+  --weight-body-strong: 600;
+
+  --container-max: 1120px;
+  --container-padding: clamp(1.25rem, 4vw, 2.5rem);
+
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --duration-reveal: 600ms;
+  --duration-funnel: 6s;
+  --duration-distribution: 4.5s;
+
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}

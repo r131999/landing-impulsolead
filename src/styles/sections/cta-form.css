@@ -1,0 +1,118 @@
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 900px) {
+  .contact__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact__intro .section-title {
+  margin-bottom: var(--space-sm);
+}
+
+.contact__text {
+  font-size: 1.05rem;
+  max-width: 46ch;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contact-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.contact-form__label {
+  font-size: 0.85rem;
+  font-weight: var(--weight-body-strong);
+  color: var(--color-text);
+}
+
+.contact-form__input {
+  padding: var(--space-sm);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+}
+
+.contact-form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.contact-form__input:focus {
+  border-color: var(--color-text);
+}
+
+.contact-form__input[aria-invalid="true"] {
+  border-color: #f1f5f9;
+  box-shadow: 0 0 0 1px #f1f5f9;
+}
+
+.contact-form__input--select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-sm) center;
+  padding-right: var(--space-lg);
+}
+
+.contact-form__error {
+  min-height: 1.1em;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  font-weight: var(--weight-body-strong);
+}
+
+.contact-form__submit {
+  margin-top: var(--space-2xs);
+  position: relative;
+}
+
+.contact-form__submit-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.contact-form[data-state="loading"] .contact-form__submit-label::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.contact-form__feedback {
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  font-weight: var(--weight-body-strong);
+}
+
+.contact-form[data-state="success"] .contact-form__feedback {
+  color: var(--color-text);
+}
+
+.contact-form[data-state="error"] .contact-form__feedback {
+  color: var(--color-text);
+}
+
+.contact-form[data-state="success"] .contact-form__row,
+.contact-form[data-state="success"] .contact-form__submit {
+  display: none;
+}

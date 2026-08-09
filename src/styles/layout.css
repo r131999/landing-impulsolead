@@ -1,0 +1,136 @@
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+section {
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+/* Alterna leve entre fundo base e elevado para dar ritmo visual à página */
+#problema,
+#como-resolve,
+#prova-social {
+  background: var(--color-bg-elevated);
+}
+
+/* --- Botões --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+  cursor: pointer;
+  transition: transform 180ms var(--ease-standard), opacity 180ms var(--ease-standard);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.btn--primary {
+  background: var(--color-accent-bg);
+  color: var(--color-accent-text);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+}
+
+.btn--large {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 1rem;
+}
+
+.btn--small {
+  padding: var(--space-2xs) var(--space-sm);
+  font-size: 0.85rem;
+}
+
+/* --- Topbar --- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+}
+
+.topbar__brand {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading-strong);
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+/* --- Footer --- */
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* --- Scroll reveal --- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-reveal) var(--ease-standard),
+              transform var(--duration-reveal) var(--ease-standard);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

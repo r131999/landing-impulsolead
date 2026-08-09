@@ -1,0 +1,100 @@
+/* Todas as animações respeitam prefers-reduced-motion no final do arquivo. */
+
+/* ---------- Hero: lead percorrendo o funil ---------- */
+
+@keyframes funnel-move {
+  0%   { left: 12.5%; top: 88%; opacity: 0; }
+  3%   { opacity: 1; }
+  18%  { left: 12.5%; top: 88%; opacity: 1; }
+  25%  { left: 37.5%; top: 88%; opacity: 1; }
+  43%  { left: 37.5%; top: 88%; opacity: 1; }
+  50%  { left: 62.5%; top: 88%; opacity: 1; }
+  68%  { left: 62.5%; top: 88%; opacity: 1; }
+  75%  { left: 87.5%; top: 88%; opacity: 1; }
+  93%  { left: 87.5%; top: 88%; opacity: 1; }
+  97%  { opacity: 0; }
+  100% { left: 12.5%; top: 88%; opacity: 0; }
+}
+
+@keyframes funnel-stage-pulse {
+  0%, 2%    { border-color: var(--color-border); box-shadow: none; }
+  6%, 18%   { border-color: var(--color-text); box-shadow: 0 0 0 4px rgba(241, 245, 249, 0.12); }
+  24%, 100% { border-color: var(--color-border); box-shadow: none; }
+}
+
+.funnel__lead {
+  animation: funnel-move var(--duration-funnel) linear infinite;
+  animation-play-state: paused;
+}
+
+.funnel__stage {
+  animation: funnel-stage-pulse var(--duration-funnel) linear infinite;
+  animation-play-state: paused;
+}
+
+.funnel__stage--1 { animation-delay: 0s; }
+.funnel__stage--2 { animation-delay: calc(var(--duration-funnel) * 0.25); }
+.funnel__stage--3 { animation-delay: calc(var(--duration-funnel) * 0.5); }
+.funnel__stage--4 { animation-delay: calc(var(--duration-funnel) * 0.75); }
+
+.funnel.is-playing .funnel__lead,
+.funnel.is-playing .funnel__stage {
+  animation-play-state: running;
+}
+
+/* ---------- Distribuição: cards indo pros corretores ---------- */
+
+@keyframes distribution-flow {
+  0%   { top: 0%; left: 50%; opacity: 0; transform: translate(-50%, 0) scale(0.7); }
+  8%   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  45%  { top: 78%; left: var(--target-left, 50%); opacity: 1; transform: translate(-50%, 0) scale(1); }
+  60%  { opacity: 0; }
+  100% { top: 78%; left: var(--target-left, 50%); opacity: 0; }
+}
+
+@keyframes agent-receive {
+  0%, 40%   { border-color: var(--color-border-strong); box-shadow: none; }
+  46%, 58%  { border-color: var(--color-text); box-shadow: 0 0 0 4px rgba(241, 245, 249, 0.15); }
+  64%, 100% { border-color: var(--color-border-strong); box-shadow: none; }
+}
+
+.distribution__lead {
+  animation: distribution-flow var(--duration-distribution) var(--ease-standard) infinite;
+  animation-play-state: paused;
+}
+
+.distribution__lead--1 { --target-left: 14%; animation-delay: 0s; }
+.distribution__lead--2 { --target-left: 50%; animation-delay: calc(var(--duration-distribution) / 3); }
+.distribution__lead--3 { --target-left: 86%; animation-delay: calc(var(--duration-distribution) / 3 * 2); }
+
+.distribution__agent-avatar {
+  animation: agent-receive var(--duration-distribution) linear infinite;
+  animation-play-state: paused;
+}
+
+.distribution__agent:nth-child(1) .distribution__agent-avatar { animation-delay: 0s; }
+.distribution__agent:nth-child(2) .distribution__agent-avatar { animation-delay: calc(var(--duration-distribution) / 3); }
+.distribution__agent:nth-child(3) .distribution__agent-avatar { animation-delay: calc(var(--duration-distribution) / 3 * 2); }
+
+.distribution.is-playing .distribution__lead,
+.distribution.is-playing .distribution__agent-avatar {
+  animation-play-state: running;
+}
+
+/* ---------- Acessibilidade: sem movimento para quem pediu ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .funnel__lead,
+  .funnel__stage,
+  .distribution__lead,
+  .distribution__agent-avatar {
+    animation: none !important;
+  }
+
+  .funnel__stage--1,
+  .funnel__stage--2,
+  .funnel__stage--3,
+  .funnel__stage--4 {
+    border-color: var(--color-border);
+  }
+}

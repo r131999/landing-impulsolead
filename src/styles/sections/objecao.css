@@ -1,0 +1,14 @@
+.objection__inner {
+  max-width: 720px;
+}
+
+.objection__text {
+  font-size: 1.05rem;
+  margin-bottom: var(--space-md);
+  max-width: 60ch;
+}
+
+.objection__text--emphasis {
+  color: var(--color-text);
+  font-weight: var(--weight-body-strong);
+}
