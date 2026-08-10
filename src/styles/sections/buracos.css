@@ -12,7 +12,7 @@
 
 .hole-card {
   padding: var(--space-lg);
-  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, #16202f 100%);
+  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, var(--card-gradient-end) 100%);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-elevated);

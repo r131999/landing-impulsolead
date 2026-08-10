@@ -11,7 +11,7 @@
   position: relative;
   margin: var(--space-xl) 0;
   padding: var(--space-lg);
-  background: linear-gradient(160deg, var(--color-bg) 0%, #0d1526 100%);
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--stat-gradient-end) 100%);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-elevated);

@@ -1,0 +1,49 @@
+/* Tema claro — versão de comparação (/claro). Só sobrescreve tokens de cor;
+   HTML, JS, copy e estrutura são exatamente os mesmos da versão escura.
+   Pra descartar: apague este arquivo + o import em main.js + o script de
+   detecção de tema em index.html + a rota /claro no nginx + a linha no
+   robots.txt. Pra promover: mova estes valores pro :root de tokens.css. */
+
+[data-theme='light'] {
+  /* --- Paleta --- */
+  --color-bg: #F2F4F8;
+  --color-bg-elevated: #FFFFFF;
+  --color-text: #022785;
+  --color-text-muted: rgba(2, 39, 133, 0.68);
+
+  --color-border: rgba(2, 39, 133, 0.12);
+  --color-border-strong: rgba(2, 39, 133, 0.25);
+  --color-card-border: #D7DCE8;
+
+  /* Verde mais escuro/saturado: mesmo significado ("sucesso/funcionando"),
+     ajustado só pra ter contraste sobre fundo claro (o problema do
+     #34D399 aqui não era o matiz, era a claridade). */
+  --color-accent: #047857;
+  --color-accent-strong: #065F46;
+  --color-accent-glow: rgba(4, 120, 87, 0.18);
+
+  /* --- Profundidade: sombras suaves tingidas de azul-marinho em vez de
+     glow/preto opaco (truques de UI escura que não funcionam em claro) --- */
+  --glow-soft: rgba(2, 39, 133, 0.05);
+  --shadow-elevated: 0 20px 40px -20px rgba(2, 39, 133, 0.12), 0 2px 8px rgba(2, 39, 133, 0.06);
+  --shadow-frame: 0 30px 60px -24px rgba(2, 39, 133, 0.16), 0 6px 16px rgba(2, 39, 133, 0.08);
+
+  --tone-blend: #F8FAFC;
+  --body-wash: #E4EAF5;
+  --card-gradient-end: #EEF1F7;
+  --stat-gradient-end: #EDF1F8;
+  --texture-line: rgba(2, 39, 133, 0.035);
+  --topbar-bg: rgba(242, 244, 248, 0.82);
+  --spotlight-color: rgba(2, 39, 133, 0.05);
+  --sweep-color-ghost: rgba(2, 39, 133, 0.12);
+}
+
+/* Os screenshots são de um produto com UI escura — mantemos um "tapete"
+   escuro ao redor deles (como uma foto emoldurada), em vez de deixá-los
+   flutuar crus contra a página clara. O card de lead e o bezel do celular
+   já foram desenhados pra esse fundo escuro, então continuam funcionando
+   sem nenhuma alteração própria. */
+[data-theme='light'] .media-frame {
+  background: #0B1120;
+  padding: 14px;
+}

@@ -23,6 +23,19 @@
   --shadow-elevated: 0 24px 48px -20px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-frame: 0 40px 80px -24px rgba(0, 0, 0, 0.65), 0 8px 24px rgba(0, 0, 0, 0.4);
 
+  /* Tons decorativos usados em gradientes/texturas — extraídos pra token pra
+     poderem ser sobrescritos por tema (ver src/styles/theme-light.css). Os
+     valores abaixo são exatamente os hardcoded que já existiam, então isso
+     não muda nada visualmente no tema escuro (padrão). */
+  --tone-blend: #17212f;
+  --body-wash: #0d1631;
+  --card-gradient-end: #16202f;
+  --stat-gradient-end: #0d1526;
+  --texture-line: rgba(241, 245, 249, 0.035);
+  --topbar-bg: rgba(11, 17, 32, 0.85);
+  --spotlight-color: rgba(241, 245, 249, 0.10);
+  --sweep-color-ghost: rgba(255, 255, 255, 0.18);
+
   --font-heading: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
   --font-body: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
 

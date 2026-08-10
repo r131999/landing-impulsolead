@@ -10,6 +10,7 @@ import './styles/sections/solucao.css';
 import './styles/sections/objecao.css';
 import './styles/sections/prova-social.css';
 import './styles/sections/cta-form.css';
+import './styles/theme-light.css';
 
 import { initScrollReveal } from './modules/scrollReveal.js';
 import { initHeroCardAnimation } from './modules/heroCardAnimation.js';

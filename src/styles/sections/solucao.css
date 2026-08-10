@@ -8,7 +8,7 @@
   padding: var(--space-lg);
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, #16202f 100%);
+  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, var(--card-gradient-end) 100%);
   box-shadow: var(--shadow-elevated);
   transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard),
               border-color 280ms var(--ease-standard);
