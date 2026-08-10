@@ -62,6 +62,32 @@
   margin-top: var(--space-lg);
 }
 
+/* Entrada escalonada: título, subtítulo e CTA aparecem em sequência (não tudo
+   de uma vez) quando .hero__copy[data-reveal] recebe .is-visible do
+   scrollReveal.js — mesmo gatilho, sem observer novo. */
+.hero__copy > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 550ms var(--ease-standard), transform 550ms var(--ease-standard);
+}
+
+.hero__copy.is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+.hero__copy.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.hero__copy.is-visible > *:nth-child(2) { transition-delay: 110ms; }
+.hero__copy.is-visible > *:nth-child(3) { transition-delay: 220ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__copy > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .hero__visual {
   display: flex;
   justify-content: center;
@@ -73,6 +99,18 @@
   position: relative;
   width: 100%;
   max-width: 560px;
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual-frame {
+    animation: none;
+  }
 }
 
 .hero-visual-frame .media-frame {

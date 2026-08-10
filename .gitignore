@@ -8,3 +8,6 @@ Thumbs.db
 
 # Gerado pelo scripts/optimize-images.mjs a cada build/dev a partir de src/assets/screenshots-src/.
 public/screenshots/
+
+# Material de referência visual (ex.: prints de concorrentes) — nunca deve ir pro build/deploy.
+public/referenciaexemplo/

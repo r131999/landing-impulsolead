@@ -16,31 +16,29 @@ section {
   padding: var(--space-2xl) 0;
 }
 
-/* Separador com gradiente (esmaece nas pontas) em vez de linha reta de ponta a ponta */
-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-border-strong), transparent);
-}
-
-section:first-of-type::before {
-  display: none;
-}
-
-/* Alterna leve entre fundo base e elevado para dar ritmo visual à página */
+/* Transições fluidas entre seções: a sequência alterna estritamente entre
+   tom base e tom elevado (hero > problema > buracos > como-resolve > objeção
+   > prova-social > contato), então cada seção sabe de que tom ela vem e funde
+   pro seu próprio tom nos primeiros ~220px do topo, em vez de cortar seco.
+   Sem cor nova — só os dois tons já aprovados, encadeados. */
 #problema,
 #como-resolve,
 #prova-social {
-  background: linear-gradient(180deg, var(--color-bg-elevated) 0%, #17212f 100%);
+  background: linear-gradient(180deg, var(--color-bg) 0, var(--color-bg-elevated) 220px, #17212f 100%);
+}
+
+#onde-se-perde,
+#objecao,
+#contato {
+  background: linear-gradient(180deg, #17212f 0, var(--color-bg) 220px, var(--color-bg) 100%);
 }
 
 /* --- Botões --- */
 
 .btn {
+  --sweep-color: rgba(255, 255, 255, 0.18);
+  position: relative;
+  z-index: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +49,25 @@ section:first-of-type::before {
   font-weight: var(--weight-heading);
   cursor: pointer;
   transition: transform 180ms var(--ease-standard), opacity 180ms var(--ease-standard);
+}
+
+/* Sweep de brilho sutil no hover — confinado ao próprio botão via background,
+   sem transform/clip-path (o gradiente nunca sai da própria caixa). */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent 35%, var(--sweep-color) 50%, transparent 65%);
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  transition: background-position 550ms ease;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  background-position: -50% 0;
 }
 
 .btn:hover {
@@ -68,10 +85,9 @@ section:first-of-type::before {
 }
 
 .btn--primary {
-  position: relative;
+  --sweep-color: rgba(11, 17, 32, 0.10);
   background: var(--color-accent-bg);
   color: var(--color-accent-text);
-  z-index: 0;
 }
 
 .btn--primary::before {
@@ -151,14 +167,17 @@ section:first-of-type::before {
 /* --- Moldura de screenshot: elevada, com leve inclinação 3D --- */
 
 .media-frame {
+  --tilt-y: -8deg;
+  --tilt-x: 4deg;
+  --tilt-scale: 1;
   position: relative;
   display: block;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-card-border);
   box-shadow: var(--shadow-frame);
-  transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
-  transition: transform 400ms var(--ease-standard);
+  transform: perspective(1200px) rotateY(var(--tilt-y)) rotateX(var(--tilt-x)) scale(var(--tilt-scale));
+  transition: transform 200ms ease-out;
 }
 
 .media-frame img {
@@ -167,8 +186,13 @@ section:first-of-type::before {
   height: auto;
 }
 
+/* Nas telas estáticas (kanban/dashboard), o hover intensifica a inclinação.
+   No hero, o JS assume o controle de --tilt-y/--tilt-x via mousemove (mais
+   específico que esta regra, então prevalece enquanto o mouse se move). */
 .media-frame:hover {
-  transform: perspective(1200px) rotateY(-10deg) rotateX(5deg) scale(1.015);
+  --tilt-y: -10deg;
+  --tilt-x: 5deg;
+  --tilt-scale: 1.015;
 }
 
 /* Perspectiva atrapalha legibilidade em tela pequena — achata abaixo de 760px */
@@ -176,6 +200,39 @@ section:first-of-type::before {
   .media-frame,
   .media-frame:hover {
     transform: none;
+  }
+}
+
+/* --- Spotlight que segue o cursor (cards reativos ao mouse) --- */
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(241, 245, 249, 0.10), transparent 70%);
+  opacity: 0;
+  transition: opacity 300ms var(--ease-standard);
+  pointer-events: none;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .spotlight-card::before {
+    display: none;
   }
 }
 

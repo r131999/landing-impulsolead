@@ -16,6 +16,14 @@
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-elevated);
+  transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard),
+              border-color 280ms var(--ease-standard);
+}
+
+.hole-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-frame);
+  border-color: var(--color-border-strong);
 }
 
 .hole-card__number {

@@ -17,38 +17,65 @@
   box-shadow: var(--shadow-elevated);
 }
 
-.problem__stat-number {
+/* Barra de proporção: 603 de 1.269 leads (~47,5%) — o dado ganha forma em vez
+   de ser um numeral solto. Preenchimento em branco (não verde: aqui o dado é
+   um problema, e verde é o sinal de sucesso do site em todo o resto). */
+
+.problem__stat-bar-track {
   position: relative;
-  display: block;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  overflow: hidden;
+}
+
+.problem__stat-bar-fill {
+  position: relative;
+  height: 100%;
+  width: 0%;
+  min-width: 84px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-sm);
+  background: var(--color-text);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  box-shadow: 0 0 24px var(--glow-soft);
+  transition: width 1400ms var(--ease-standard) 200ms;
+}
+
+[data-reveal].is-visible .problem__stat-bar-fill {
+  width: var(--fill, 47.5%);
+}
+
+.problem__stat-bar-fill-label {
   font-family: var(--font-heading);
-  font-weight: var(--weight-heading-strong);
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-accent);
+  font-weight: var(--weight-heading);
+  font-size: 0.95rem;
+  color: var(--color-bg);
+  white-space: nowrap;
 }
 
-.problem__stat-number::before {
-  content: '';
-  position: absolute;
-  top: -60%;
-  left: -8%;
-  width: 60%;
-  height: 220%;
-  background: var(--glow-soft);
-  filter: blur(60px);
-  z-index: -1;
+.problem__stat-bar-total {
+  margin: var(--space-xs) 0 0;
+  font-size: 0.85rem;
 }
 
-.problem__stat-divider {
-  color: var(--color-text-muted);
-  margin: 0 0.15em;
+.problem__stat-bar-total strong {
+  color: var(--color-text);
+  font-weight: var(--weight-body-strong);
 }
 
 .problem__stat-caption {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-md);
   font-size: 1rem;
   max-width: 52ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem__stat-bar-fill {
+    transition: none;
+  }
 }
 
 .problem__closing {

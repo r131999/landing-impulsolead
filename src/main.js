@@ -17,6 +17,7 @@ import { initDistributionAnimation } from './modules/distributionAnimation.js';
 import { initSmoothScroll } from './modules/smoothScroll.js';
 import { initContactForm } from './modules/form.js';
 import { initCountUp } from './modules/countUp.js';
+import { initSpotlightCards, initHeroParallax } from './modules/interactiveEffects.js';
 
 function init() {
   initScrollReveal();
@@ -25,6 +26,8 @@ function init() {
   initSmoothScroll();
   initContactForm();
   initCountUp();
+  initSpotlightCards();
+  initHeroParallax();
 
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

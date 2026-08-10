@@ -1,6 +1,8 @@
 .text-accent {
   color: var(--color-accent);
-  font-weight: var(--weight-body-strong);
+  /* "bolder" (não um peso fixo) garante que o destaque nunca fique mais fino
+     que o texto ao redor, mesmo dentro de headings já pesados (800/900). */
+  font-weight: bolder;
 }
 
 /* Sublinhado que "desenha" da esquerda pra direita quando a seção entra na tela.
@@ -9,7 +11,7 @@
 .hl-underline {
   position: relative;
   color: var(--color-accent);
-  font-weight: var(--weight-body-strong);
+  font-weight: bolder;
 }
 
 .hl-underline::after {

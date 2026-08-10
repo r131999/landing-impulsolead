@@ -10,6 +10,14 @@
   border-radius: var(--radius-lg);
   background: linear-gradient(160deg, var(--color-bg-elevated) 0%, #16202f 100%);
   box-shadow: var(--shadow-elevated);
+  transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard),
+              border-color 280ms var(--ease-standard);
+}
+
+.solution__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-frame);
+  border-color: var(--color-border-strong);
 }
 
 .solution__item-title {
@@ -33,6 +41,15 @@
   .solution__item--media {
     grid-template-columns: 1.1fr 1fr;
     align-items: center;
+  }
+
+  /* Ritmo alternado: quebra a repetição de "texto sempre à esquerda" */
+  .solution__item--media:nth-of-type(even) .solution__item-copy {
+    order: 2;
+  }
+
+  .solution__item--media:nth-of-type(even) .solution__item-media {
+    order: 1;
   }
 }
 
@@ -112,7 +129,6 @@
   position: relative;
   width: 100%;
   max-width: 240px;
-  aspect-ratio: 9 / 16;
   background: #000;
   border-radius: 32px;
   padding: 10px;
@@ -135,7 +151,9 @@
 .phone-frame__screen {
   position: relative;
   width: 100%;
-  height: 100%;
+  /* Proporção real da screenshot (1080x1920) — fica aqui, não no .phone-frame
+     externo, senão o padding do bezel distorce a razão e a imagem é cortada. */
+  aspect-ratio: 9 / 16;
   border-radius: 22px;
   overflow: hidden;
   background: var(--color-bg);
