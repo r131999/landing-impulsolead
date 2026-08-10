@@ -4,7 +4,22 @@
   overflow: hidden;
 }
 
+/* Textura sutil (grade fina) atrás do conteúdo, esmaecida nas bordas */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(241, 245, 249, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 245, 249, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 75%);
+  pointer-events: none;
+}
+
 .hero__inner {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-xl);
@@ -18,9 +33,22 @@
 }
 
 .hero__title {
+  position: relative;
   font-size: clamp(2.25rem, 5.5vw, 3.75rem);
   font-weight: var(--weight-heading-strong);
-  max-width: 16ch;
+  max-width: 18ch;
+}
+
+.hero__title::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 70%;
+  height: 180%;
+  background: var(--glow-soft);
+  filter: blur(50px);
+  z-index: -1;
 }
 
 .hero__subtitle {
@@ -39,47 +67,56 @@
   justify-content: center;
 }
 
-/* --- Funil (pipeline de estágios + lead em movimento) --- */
+/* --- Screenshot real do funil, com moldura elevada --- */
 
-.funnel {
+.hero-visual-frame {
   position: relative;
   width: 100%;
-  max-width: 460px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xs);
-  padding: var(--space-lg) var(--space-sm) var(--space-2xl);
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  max-width: 560px;
 }
 
-.funnel__stage {
-  position: relative;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-2xs);
-  min-height: 92px;
-  display: flex;
-  align-items: flex-end;
-  background: var(--color-bg);
+.hero-visual-frame .media-frame {
+  width: 100%;
 }
 
-.funnel__stage-label {
-  font-size: 0.7rem;
-  font-weight: var(--weight-body-strong);
-  color: var(--color-text-muted);
-  line-height: 1.2;
-}
+/* --- Card de lead flutuando sobre a screenshot (ver animations.css) --- */
 
-.funnel__lead {
+.lead-card {
+  /* Posicionado sobre a faixa "Lead" do funil real na screenshot */
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--color-text);
-  box-shadow: 0 0 0 6px rgba(241, 245, 249, 0.12);
-  transform: translate(-50%, -50%);
-  top: 88%;
-  left: 12.5%;
+  top: 18%;
+  left: 54%;
+  width: 168px;
+  padding: var(--space-xs);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 2;
+}
+
+.lead-card__name {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading);
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+.lead-card__phone {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.lead-card__badge {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: var(--weight-body-strong);
+  color: var(--color-bg);
+  background: var(--color-accent);
 }

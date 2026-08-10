@@ -5,20 +5,37 @@
   padding-right: var(--container-padding);
 }
 
-section {
-  padding: var(--space-2xl) 0;
-  border-top: 1px solid var(--color-border);
+body {
+  /* Leve "spotlight" no topo — dá profundidade ao fundo sem sair da paleta */
+  background: radial-gradient(ellipse 1200px 640px at 50% -10%, #0d1631 0%, var(--color-bg) 60%),
+    var(--color-bg);
 }
 
-section:first-of-type {
-  border-top: none;
+section {
+  position: relative;
+  padding: var(--space-2xl) 0;
+}
+
+/* Separador com gradiente (esmaece nas pontas) em vez de linha reta de ponta a ponta */
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border-strong), transparent);
+}
+
+section:first-of-type::before {
+  display: none;
 }
 
 /* Alterna leve entre fundo base e elevado para dar ritmo visual à página */
 #problema,
 #como-resolve,
 #prova-social {
-  background: var(--color-bg-elevated);
+  background: linear-gradient(180deg, var(--color-bg-elevated) 0%, #17212f 100%);
 }
 
 /* --- Botões --- */
@@ -51,8 +68,26 @@ section:first-of-type {
 }
 
 .btn--primary {
+  position: relative;
   background: var(--color-accent-bg);
   color: var(--color-accent-text);
+  z-index: 0;
+}
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  background: var(--glow-soft);
+  filter: blur(20px);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-standard);
+}
+
+.btn--primary:hover::before {
+  opacity: 1;
 }
 
 .btn--ghost {
@@ -111,6 +146,37 @@ section:first-of-type {
   justify-content: space-between;
   color: var(--color-text-muted);
   font-size: 0.85rem;
+}
+
+/* --- Moldura de screenshot: elevada, com leve inclinação 3D --- */
+
+.media-frame {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-frame);
+  transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
+  transition: transform 400ms var(--ease-standard);
+}
+
+.media-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.media-frame:hover {
+  transform: perspective(1200px) rotateY(-10deg) rotateX(5deg) scale(1.015);
+}
+
+/* Perspectiva atrapalha legibilidade em tela pequena — achata abaixo de 760px */
+@media (max-width: 760px) {
+  .media-frame,
+  .media-frame:hover {
+    transform: none;
+  }
 }
 
 /* --- Scroll reveal --- */

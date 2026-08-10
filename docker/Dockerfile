@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
 
 # ---- Build ----
-FROM node:22-alpine AS build
+# node:22-slim (glibc) em vez de node:22-alpine: evita risco de incompatibilidade
+# do binário nativo do sharp (otimização de imagem) com musl. Não afeta a imagem
+# final — só o estágio de build, que não é publicado.
+FROM node:22-slim AS build
 WORKDIR /app
 
 COPY package.json package-lock.json* ./

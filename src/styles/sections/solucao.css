@@ -6,9 +6,10 @@
 
 .solution__item {
   padding: var(--space-lg);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
-  background: var(--color-bg);
+  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, #16202f 100%);
+  box-shadow: var(--shadow-elevated);
 }
 
 .solution__item-title {
@@ -21,23 +22,30 @@
   max-width: 62ch;
 }
 
-.solution__item--distribution {
+/* Itens que carregam uma screenshot ou a animação de distribuição */
+.solution__item--media {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-lg);
 }
 
 @media (min-width: 860px) {
-  .solution__item--distribution {
+  .solution__item--media {
     grid-template-columns: 1.1fr 1fr;
     align-items: center;
   }
+}
+
+.solution__item-media {
+  display: flex;
+  justify-content: center;
 }
 
 /* --- Distribuição automática (animação) --- */
 
 .distribution {
   position: relative;
+  width: 100%;
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -82,13 +90,60 @@
   color: var(--color-text-muted);
 }
 
+/* Mini-card de lead (nome real) caindo em rodízio até um corretor */
 .distribution__lead {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--color-text);
   top: 0;
   left: 50%;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.68rem;
+  font-weight: var(--weight-body-strong);
+  color: var(--color-text);
+  white-space: nowrap;
   opacity: 0;
+}
+
+/* --- Mockup de celular (notificação no WhatsApp) --- */
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 32px;
+  padding: 10px;
+  box-shadow: var(--shadow-frame);
+  border: 1px solid var(--color-card-border);
+}
+
+.phone-frame__notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 16px;
+  background: #000;
+  border-radius: 0 0 10px 10px;
+  z-index: 2;
+}
+
+.phone-frame__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.phone-frame__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

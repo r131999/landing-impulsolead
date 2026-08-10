@@ -1,0 +1,35 @@
+.text-accent {
+  color: var(--color-accent);
+  font-weight: var(--weight-body-strong);
+}
+
+/* Sublinhado que "desenha" da esquerda pra direita quando a seção entra na tela.
+   Reaproveita a mesma classe .is-visible que o scrollReveal.js já aplica no
+   ancestral [data-reveal] — sem observer/timer próprio. */
+.hl-underline {
+  position: relative;
+  color: var(--color-accent);
+  font-weight: var(--weight-body-strong);
+}
+
+.hl-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 700ms var(--ease-standard) 250ms;
+}
+
+[data-reveal].is-visible .hl-underline::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hl-underline::after {
+    width: 100%;
+    transition: none;
+  }
+}

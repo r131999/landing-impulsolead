@@ -8,20 +8,36 @@
 }
 
 .problem__stat {
+  position: relative;
   margin: var(--space-xl) 0;
   padding: var(--space-lg);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(160deg, var(--color-bg) 0%, #0d1526 100%);
+  border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevated);
 }
 
 .problem__stat-number {
+  position: relative;
   display: block;
   font-family: var(--font-heading);
   font-weight: var(--weight-heading-strong);
   font-size: clamp(2.5rem, 7vw, 4rem);
   line-height: 1;
   letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+
+.problem__stat-number::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -8%;
+  width: 60%;
+  height: 220%;
+  background: var(--glow-soft);
+  filter: blur(60px);
+  z-index: -1;
 }
 
 .problem__stat-divider {

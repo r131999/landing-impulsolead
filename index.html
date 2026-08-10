@@ -34,8 +34,8 @@
     <!-- 1. HERO -->
     <section class="hero" id="hero">
       <div class="container hero__inner">
-        <div class="hero__copy">
-          <h1 class="hero__title">O CRM da imobiliária que não perde lead.</h1>
+        <div class="hero__copy" data-reveal>
+          <h1 class="hero__title">O CRM da imobiliária que <span class="hl-underline">não perde lead</span>.</h1>
           <p class="hero__subtitle">
             Porque lead perdido é venda perdida — e a maioria some por falta de controle,
             não por falta de interesse do cliente.
@@ -45,21 +45,29 @@
           </button>
         </div>
 
-        <div class="hero__visual" aria-hidden="true">
-          <div class="funnel" data-funnel>
-            <div class="funnel__stage funnel__stage--1" data-funnel-stage="0">
-              <span class="funnel__stage-label">Lead</span>
+        <div class="hero__visual">
+          <div class="hero-visual-frame" data-hero-visual>
+            <picture class="media-frame">
+              <source
+                media="(max-width: 760px)"
+                srcset="/screenshots/funil-mobile.webp"
+                type="image/webp"
+              />
+              <source srcset="/screenshots/funil.webp" type="image/webp" />
+              <img
+                src="/screenshots/funil-optimized.png"
+                width="1230"
+                height="693"
+                alt="Funil de vendas do ImpulsoLead mostrando os leads em cada etapa, do primeiro contato até a venda"
+                fetchpriority="high"
+              />
+            </picture>
+
+            <div class="lead-card" aria-hidden="true">
+              <span class="lead-card__name">Carlos Mendes</span>
+              <span class="lead-card__phone">98 99777-4455</span>
+              <span class="lead-card__badge">Novo</span>
             </div>
-            <div class="funnel__stage funnel__stage--2" data-funnel-stage="1">
-              <span class="funnel__stage-label">Atendimento</span>
-            </div>
-            <div class="funnel__stage funnel__stage--3" data-funnel-stage="2">
-              <span class="funnel__stage-label">Visita</span>
-            </div>
-            <div class="funnel__stage funnel__stage--4" data-funnel-stage="3">
-              <span class="funnel__stage-label">Venda</span>
-            </div>
-            <div class="funnel__lead" data-funnel-lead></div>
           </div>
         </div>
       </div>
@@ -70,12 +78,12 @@
       <div class="container problem__inner">
         <p class="eyebrow">O problema</p>
         <h2 class="problem__title">
-          Quase metade dos leads fica “perdido” depois do primeiro contato.
+          <strong class="text-accent">Quase metade</strong> dos leads fica “perdido” depois do primeiro contato.
           E ninguém percebe quando isso acontece.
         </h2>
 
         <div class="problem__stat" data-reveal>
-          <span class="problem__stat-number">603<span class="problem__stat-divider">/</span>1.269</span>
+          <span class="problem__stat-number"><span data-count-to="603">0</span><span class="problem__stat-divider">/</span><span data-count-to="1269">0</span></span>
           <p class="problem__stat-caption">
             leads foram marcados como perdidos numa imobiliária de São Luís.
             Não é caso isolado, é o padrão de quem gerencia lead por planilha e WhatsApp solto.
@@ -100,8 +108,8 @@
             <h3 class="hole-card__title">Chega e ninguém vê</h3>
             <p class="hole-card__text">
               O lead entra às 21h, pelo anúncio ou pelo WhatsApp. O gestor precisa distribuir
-              na mão e ainda avisar o corretor. Quando isso acontece, ele já falou com outra
-              imobiliária.
+              na mão e ainda avisar o corretor. Quando isso acontece, ele
+              <strong class="hl-underline">já falou com outra imobiliária</strong>.
             </p>
           </article>
 
@@ -119,7 +127,7 @@
             <h3 class="hole-card__title">Ninguém sabe em que etapa está</h3>
             <p class="hole-card__text">
               O gestor pergunta “e aquele lead do Alphaville?” e a resposta é “acho que o
-              Fulano tá falando com ele”. Acha.
+              Fulano tá falando com ele”. <strong class="hl-underline">Acha.</strong>
             </p>
           </article>
         </div>
@@ -136,63 +144,121 @@
 
         <div class="solution__list">
           <article class="solution__item" data-reveal>
-            <h3 class="solution__item-title">Do anúncio direto pro corretor, em segundos</h3>
+            <h3 class="solution__item-title">Do anúncio direto pro corretor, <span class="text-accent">em segundos</span></h3>
             <p class="solution__item-text">
               O lead preenche o formulário no Instagram ou Facebook e cai no CRM na hora,
               já com o corretor definido. Sem planilha no meio, sem alguém pra copiar e colar.
             </p>
           </article>
 
-          <article class="solution__item solution__item--distribution" data-reveal>
+          <article class="solution__item solution__item--media" data-reveal>
             <div class="solution__item-copy">
               <h3 class="solution__item-title">Distribuição justa, decidida pelo sistema</h3>
               <p class="solution__item-text">
-                Rodízio automático entre a equipe. Quem está com lead parado sem resposta
+                Rodízio <span class="text-accent">automático</span> entre a equipe. Quem está com lead parado sem resposta
                 é pulado — e o gestor é avisado. Dá pra separar por equipe também:
                 lançamento pra um time, usado pra outro.
               </p>
             </div>
 
-            <div class="distribution" data-distribution aria-hidden="true">
-              <div class="distribution__source" data-distribution-source></div>
-              <div class="distribution__agents">
-                <div class="distribution__agent" data-distribution-agent>
-                  <span class="distribution__agent-avatar">A</span>
-                  <span class="distribution__agent-label">Corretor A</span>
-                </div>
-                <div class="distribution__agent" data-distribution-agent>
-                  <span class="distribution__agent-avatar">B</span>
-                  <span class="distribution__agent-label">Corretor B</span>
-                </div>
-                <div class="distribution__agent" data-distribution-agent>
-                  <span class="distribution__agent-avatar">C</span>
-                  <span class="distribution__agent-label">Corretor C</span>
+            <div class="solution__item-media">
+              <div class="distribution" data-distribution aria-hidden="true">
+                <div class="distribution__source" data-distribution-source></div>
+                <span class="distribution__lead distribution__lead--1" data-distribution-lead>Maria S.</span>
+                <span class="distribution__lead distribution__lead--2" data-distribution-lead>Carlos M.</span>
+                <span class="distribution__lead distribution__lead--3" data-distribution-lead>Juliana F.</span>
+                <div class="distribution__agents">
+                  <div class="distribution__agent" data-distribution-agent>
+                    <span class="distribution__agent-avatar">A</span>
+                    <span class="distribution__agent-label">Corretor A</span>
+                  </div>
+                  <div class="distribution__agent" data-distribution-agent>
+                    <span class="distribution__agent-avatar">B</span>
+                    <span class="distribution__agent-label">Corretor B</span>
+                  </div>
+                  <div class="distribution__agent" data-distribution-agent>
+                    <span class="distribution__agent-avatar">C</span>
+                    <span class="distribution__agent-label">Corretor C</span>
+                  </div>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="solution__item" data-reveal>
-            <h3 class="solution__item-title">Notificação no WhatsApp, onde o corretor já está</h3>
-            <p class="solution__item-text">
-              Lead novo, lembrete de follow-up: tudo chega no WhatsApp dele. Não precisa
-              lembrar de abrir sistema nenhum.
-            </p>
+          <article class="solution__item solution__item--media" data-reveal>
+            <div class="solution__item-copy">
+              <h3 class="solution__item-title">Notificação no WhatsApp, onde o corretor já está</h3>
+              <p class="solution__item-text">
+                Lead novo, lembrete de follow-up: tudo chega no WhatsApp dele. Não precisa
+                lembrar de abrir sistema nenhum.
+              </p>
+            </div>
+
+            <div class="solution__item-media">
+              <div class="phone-frame">
+                <div class="phone-frame__notch"></div>
+                <div class="phone-frame__screen">
+                  <picture>
+                    <source srcset="/screenshots/whatsapp-mobile.webp" media="(max-width: 760px)" type="image/webp" />
+                    <source srcset="/screenshots/whatsapp.webp" type="image/webp" />
+                    <img
+                      src="/screenshots/whatsapp-optimized.png"
+                      width="1080"
+                      height="1920"
+                      loading="lazy"
+                      alt="Notificação de novo lead recebida no WhatsApp do corretor pelo ImpulsoLead"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="solution__item" data-reveal>
-            <h3 class="solution__item-title">O funil inteiro na tela</h3>
-            <p class="solution__item-text">
-              Do primeiro contato à venda. O gestor abre e vê onde cada lead está, quem
-              está com ele, e há quanto tempo parou.
-            </p>
+          <article class="solution__item solution__item--media" data-reveal>
+            <div class="solution__item-copy">
+              <h3 class="solution__item-title">O funil inteiro na tela</h3>
+              <p class="solution__item-text">
+                Do primeiro contato à venda. O gestor abre e vê onde cada lead está, quem
+                está com ele, e há quanto tempo parou.
+              </p>
+            </div>
+
+            <div class="solution__item-media">
+              <picture class="media-frame">
+                <source srcset="/screenshots/kanban-mobile.webp" media="(max-width: 760px)" type="image/webp" />
+                <source srcset="/screenshots/kanban.webp" type="image/webp" />
+                <img
+                  src="/screenshots/kanban-optimized.png"
+                  width="1230"
+                  height="693"
+                  loading="lazy"
+                  alt="Kanban do ImpulsoLead mostrando os leads distribuídos entre as colunas do funil, dos corretores responsáveis"
+                />
+              </picture>
+            </div>
           </article>
 
-          <article class="solution__item" data-reveal>
-            <h3 class="solution__item-title">Qual anúncio virou venda de verdade</h3>
-            <p class="solution__item-text">
-              Não só “quantos leads gerou”. Qual campanha trouxe cliente que fechou.
-            </p>
+          <article class="solution__item solution__item--media" data-reveal>
+            <div class="solution__item-copy">
+              <h3 class="solution__item-title">Qual anúncio virou venda de verdade</h3>
+              <p class="solution__item-text">
+                Não só “quantos leads gerou”. Qual campanha trouxe cliente que fechou.
+              </p>
+            </div>
+
+            <div class="solution__item-media">
+              <picture class="media-frame">
+                <source srcset="/screenshots/dashboard-mobile.webp" media="(max-width: 760px)" type="image/webp" />
+                <source srcset="/screenshots/dashboard.webp" type="image/webp" />
+                <img
+                  src="/screenshots/dashboard-optimized.png"
+                  width="1230"
+                  height="693"
+                  loading="lazy"
+                  alt="Dashboard do ImpulsoLead mostrando o desempenho de vendas por anúncio"
+                />
+              </picture>
+            </div>
           </article>
         </div>
       </div>
@@ -210,7 +276,7 @@
         </p>
         <p class="objection__text">
           No ImpulsoLead, o incentivo é do próprio corretor: quem não movimenta o lead no
-          funil é pulado na fila e recebe menos lead novo. Não é regra imposta pelo gestor
+          funil <strong class="hl-underline">é pulado na fila</strong> e recebe menos lead novo. Não é regra imposta pelo gestor
           — é como o sistema funciona.
         </p>
         <p class="objection__text objection__text--emphasis">
