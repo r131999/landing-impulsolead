@@ -1,18 +1,30 @@
-.social-proof__list {
+.social-proof__logos {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-lg) var(--space-xl);
-  margin-bottom: var(--space-md);
+  align-items: center;
+  gap: var(--space-xl);
 }
 
-.social-proof__list li {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-heading);
-  font-size: 1.25rem;
-  color: var(--color-text);
+/* Os logos já vêm como selos opacos (fundo próprio: preto, azul, cinza-claro),
+   não marcas soltas em fundo transparente — então não precisam de chip atrás,
+   só espaço pra respirar e o efeito de cinza -> cor no hover. */
+.social-proof__logo {
+  display: flex;
+  align-items: center;
+  filter: grayscale(1);
+  opacity: 0.75;
+  transition: filter 220ms var(--ease-standard), opacity 220ms var(--ease-standard);
 }
 
-.social-proof__caption {
-  font-size: 0.95rem;
-  max-width: 52ch;
+.social-proof__logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.social-proof__logo img {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: 120px;
+  border-radius: var(--radius-sm);
 }

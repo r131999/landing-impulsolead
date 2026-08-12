@@ -7,8 +7,10 @@ import './styles/sections/hero.css';
 import './styles/sections/problema.css';
 import './styles/sections/buracos.css';
 import './styles/sections/solucao.css';
+import './styles/sections/anuncios.css';
 import './styles/sections/objecao.css';
 import './styles/sections/prova-social.css';
+import './styles/sections/para-quem-e.css';
 import './styles/sections/cta-form.css';
 import './styles/theme-light.css';
 
@@ -17,7 +19,6 @@ import { initHeroCardAnimation } from './modules/heroCardAnimation.js';
 import { initDistributionAnimation } from './modules/distributionAnimation.js';
 import { initSmoothScroll } from './modules/smoothScroll.js';
 import { initContactForm } from './modules/form.js';
-import { initCountUp } from './modules/countUp.js';
 import { initSpotlightCards, initHeroParallax } from './modules/interactiveEffects.js';
 
 function init() {
@@ -26,7 +27,6 @@ function init() {
   initDistributionAnimation();
   initSmoothScroll();
   initContactForm();
-  initCountUp();
   initSpotlightCards();
   initHeroParallax();
 

@@ -7,78 +7,14 @@
   color: var(--color-text);
 }
 
-.problem__stat {
-  position: relative;
-  margin: var(--space-xl) 0;
-  padding: var(--space-lg);
-  background: linear-gradient(160deg, var(--color-bg) 0%, var(--stat-gradient-end) 100%);
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-elevated);
-}
-
-/* Barra de proporção: 603 de 1.269 leads (~47,5%) — o dado ganha forma em vez
-   de ser um numeral solto. Preenchimento em branco (não verde: aqui o dado é
-   um problema, e verde é o sinal de sucesso do site em todo o resto). */
-
-.problem__stat-bar-track {
-  position: relative;
-  height: 56px;
-  border-radius: var(--radius-sm);
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border-strong);
-  overflow: hidden;
-}
-
-.problem__stat-bar-fill {
-  position: relative;
-  height: 100%;
-  width: 0%;
-  min-width: 84px;
-  display: flex;
-  align-items: center;
-  padding: 0 var(--space-sm);
-  background: var(--color-text);
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  box-shadow: 0 0 24px var(--glow-soft);
-  transition: width 1400ms var(--ease-standard) 200ms;
-}
-
-[data-reveal].is-visible .problem__stat-bar-fill {
-  width: var(--fill, 47.5%);
-}
-
-.problem__stat-bar-fill-label {
-  font-family: var(--font-heading);
-  font-weight: var(--weight-heading);
-  font-size: 0.95rem;
-  color: var(--color-bg);
-  white-space: nowrap;
-}
-
-.problem__stat-bar-total {
-  margin: var(--space-xs) 0 0;
-  font-size: 0.85rem;
-}
-
-.problem__stat-bar-total strong {
-  color: var(--color-text);
-  font-weight: var(--weight-body-strong);
-}
-
-.problem__stat-caption {
+.problem__text {
   margin-top: var(--space-md);
-  font-size: 1rem;
-  max-width: 52ch;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .problem__stat-bar-fill {
-    transition: none;
-  }
+  font-size: 1.05rem;
+  max-width: 60ch;
 }
 
 .problem__closing {
+  margin-top: var(--space-lg);
   font-size: 1.125rem;
   font-weight: var(--weight-body-strong);
   color: var(--color-text);

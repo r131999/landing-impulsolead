@@ -1,0 +1,21 @@
+.fit__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  max-width: 640px;
+}
+
+.fit__list li {
+  position: relative;
+  padding-left: 1.5em;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.fit__list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}

@@ -1,0 +1,13 @@
+.ads__text {
+  margin-top: var(--space-md);
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+/* Maior que as screenshots dentro da lista de "Como resolve" (que ficam
+   confinadas a ~metade da coluna) — pedido explícito de destaque maior,
+   já que esta seção é só sobre esse dashboard. */
+.ads__media {
+  margin-top: var(--space-xl);
+  max-width: 900px;
+}
