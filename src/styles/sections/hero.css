@@ -1,6 +1,10 @@
 .hero {
   padding-top: var(--space-2xl);
-  padding-bottom: var(--space-2xl);
+  /* Menor que o padrão de seção — o excesso de vazio antes do "problema" foi
+     apontado como se a página tivesse "acabado" ali. A mudança de seção fica
+     por conta do gradiente entre tons (ver #problema em layout.css), não da
+     distância. */
+  padding-bottom: var(--space-lg);
   overflow: hidden;
 }
 
@@ -28,7 +32,9 @@
 
 @media (min-width: 960px) {
   .hero__inner {
-    grid-template-columns: 1.1fr 1fr;
+    /* Coluna do visual maior que a do texto — o screenshot é o elemento
+       principal da composição, não deve parecer "colado" ao lado do texto. */
+    grid-template-columns: 1fr 1.15fr;
   }
 }
 
@@ -90,7 +96,8 @@
 
 .hero__visual {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* --- Screenshot real do funil, com moldura elevada --- */
@@ -98,8 +105,34 @@
 .hero-visual-frame {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 640px;
   animation: hero-float 6s ease-in-out infinite;
+}
+
+/* Em telas largas, deixa passar levemente do container à direita — o hero
+   tem overflow:hidden só na largura da seção inteira, não na do container,
+   então a sangria não é cortada. */
+@media (min-width: 1280px) {
+  .hero__visual {
+    align-self: stretch;
+  }
+
+  .hero-visual-frame {
+    margin-right: -64px;
+  }
+}
+
+/* Luz radial discreta atrás do screenshot — azul + verde, bem sutil */
+.hero-visual-frame::before {
+  content: '';
+  position: absolute;
+  inset: -14% -20%;
+  z-index: -1;
+  background:
+    radial-gradient(closest-side, var(--glow-blue), transparent 70%) 28% 32% / 65% 65% no-repeat,
+    radial-gradient(closest-side, var(--color-accent-glow), transparent 70%) 76% 72% / 55% 55% no-repeat;
+  filter: blur(46px);
+  pointer-events: none;
 }
 
 @keyframes hero-float {
@@ -117,6 +150,33 @@
   width: 100%;
 }
 
+/* --- Linha de fluxo discreta abaixo do screenshot (diagrama, não texto) --- */
+
+.hero-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-lg);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: var(--weight-body-strong);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.hero-flow__connector {
+  width: 22px;
+  height: 1px;
+  background: var(--color-border-strong);
+}
+
+.hero-flow__node--accent {
+  color: var(--color-accent);
+}
+
 /* --- Card de lead flutuando sobre a screenshot (ver animations.css) --- */
 
 .lead-card {
@@ -129,7 +189,9 @@
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-elevated);
+  /* Mais profunda que o padrão de card — precisa parecer que saiu da
+     interface e está flutuando bem acima dela, não só levemente elevada. */
+  box-shadow: var(--shadow-float);
   display: flex;
   flex-direction: column;
   gap: 2px;

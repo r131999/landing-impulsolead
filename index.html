@@ -2,16 +2,6 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <!-- Versão de comparação /claro: mesmo HTML/JS/copy, só troca o tema via
-       [data-theme] (ver src/styles/theme-light.css). Roda antes do CSS
-       pintar, sem flash. Pra descartar: remover este bloco + a rota /claro
-       no nginx + theme-light.css + o import dele em main.js + a linha no
-       robots.txt. -->
-  <script>
-    if (location.pathname.replace(/\/$/, '') === '/claro') {
-      document.documentElement.dataset.theme = 'light';
-    }
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ImpulsoLead — O CRM da imobiliária que não perde lead</title>
   <meta name="description" content="Lead perdido é venda perdida. O ImpulsoLead distribui, notifica e mostra o funil inteiro em tempo real — sem depender de planilha ou WhatsApp solto." />
@@ -22,11 +12,6 @@
   <!-- TODO: adicionar og:image com uma peça de marca real antes do lançamento -->
 
   <meta name="theme-color" content="#0B1120" />
-  <script>
-    if (document.documentElement.dataset.theme === 'light') {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F2F4F8');
-    }
-  </script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="/site.webmanifest" />
   <script type="module" src="/src/main.js"></script>
@@ -38,7 +23,7 @@
   <header class="topbar">
     <div class="container topbar__inner">
       <span class="topbar__brand">ImpulsoLead</span>
-      <button type="button" class="btn btn--ghost btn--small" data-scroll-to="#contato">
+      <button type="button" class="btn btn--accent btn--small" data-scroll-to="#contato">
         Quero ver funcionando
       </button>
     </div>
@@ -79,10 +64,20 @@
             </picture>
 
             <div class="lead-card" aria-hidden="true">
-              <span class="lead-card__name">Carlos Mendes</span>
-              <span class="lead-card__phone">98 99777-4455</span>
+              <span class="lead-card__name">Maria Silva</span>
+              <span class="lead-card__phone">98 98888-7777</span>
               <span class="lead-card__badge">Novo</span>
             </div>
+          </div>
+
+          <div class="hero-flow" aria-hidden="true">
+            <span class="hero-flow__node">Meta Ads</span>
+            <span class="hero-flow__connector"></span>
+            <span class="hero-flow__node">Novo lead</span>
+            <span class="hero-flow__connector"></span>
+            <span class="hero-flow__node">ImpulsoLead</span>
+            <span class="hero-flow__connector"></span>
+            <span class="hero-flow__node hero-flow__node--accent">Corretor</span>
           </div>
         </div>
       </div>
@@ -91,22 +86,64 @@
     <!-- 2. O PROBLEMA -->
     <section class="problem" id="problema" data-reveal>
       <div class="container problem__inner">
-        <p class="eyebrow">O problema</p>
-        <h2 class="problem__title">
-          Seu anúncio pode estar funcionando. E a venda morrendo depois do lead.
-        </h2>
+        <div class="problem__copy">
+          <p class="eyebrow">O problema</p>
+          <h2 class="problem__title">
+            Seu anúncio pode estar funcionando. E a venda morrendo depois do lead.
+          </h2>
 
-        <p class="problem__text">
-          Você pagou para aquele contato chegar.
-        </p>
-        <p class="problem__text">
-          Se ele cai no WhatsApp, demora para ser distribuído, fica parado com um
-          corretor ou ninguém faz o follow-up, o problema já não está mais no anúncio.
-        </p>
+          <p class="problem__text">
+            Você pagou para aquele contato chegar.
+          </p>
+          <p class="problem__text">
+            Se ele cai no WhatsApp, demora para ser distribuído, fica parado com um
+            corretor ou ninguém faz o follow-up, o problema já não está mais no anúncio.
+          </p>
 
-        <p class="problem__closing">
-          O dinheiro foi investido. O lead chegou. A venda escapou na operação.
-        </p>
+          <p class="problem__closing">
+            O dinheiro foi investido. O lead chegou. A venda escapou na operação.
+          </p>
+        </div>
+
+        <div class="problem__visual">
+          <div class="lead-timeline" aria-hidden="true">
+            <div class="lead-timeline__node lead-timeline__node--source">
+              <span class="lead-timeline__label">Meta Ads</span>
+            </div>
+            <div class="lead-timeline__connector"></div>
+
+            <div class="lead-timeline__node lead-timeline__node--done">
+              <span class="lead-timeline__dot"></span>
+              <span class="lead-timeline__label">Lead gerado</span>
+              <span class="lead-timeline__time">21:03</span>
+            </div>
+            <div class="lead-timeline__connector"></div>
+
+            <div class="lead-timeline__node lead-timeline__node--done">
+              <span class="lead-timeline__dot"></span>
+              <span class="lead-timeline__label">Entrou no WhatsApp</span>
+              <span class="lead-timeline__time">21:04</span>
+            </div>
+            <div class="lead-timeline__connector"></div>
+
+            <div class="lead-timeline__node lead-timeline__node--waiting">
+              <span class="lead-timeline__dot"></span>
+              <span class="lead-timeline__label">Aguardando distribuição</span>
+              <span class="lead-timeline__time">21:37</span>
+            </div>
+            <div class="lead-timeline__connector"></div>
+
+            <div class="lead-timeline__node lead-timeline__node--alert">
+              <span class="lead-timeline__icon">⚠</span>
+              <span class="lead-timeline__label">Sem atendimento</span>
+            </div>
+            <div class="lead-timeline__connector"></div>
+
+            <div class="lead-timeline__node lead-timeline__node--loss">
+              <span class="lead-timeline__label">Venda perdida</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -119,6 +156,19 @@
         <div class="holes__grid">
           <article class="hole-card spotlight-card" data-reveal>
             <span class="hole-card__number">01</span>
+
+            <div class="hole-scene hole-scene--timer" aria-hidden="true">
+              <div class="scene-lead-card">
+                <span class="scene-lead-card__time">21:03</span>
+                <span class="scene-lead-card__name">Maria Silva</span>
+                <span class="scene-lead-card__project">Residencial Aurora</span>
+              </div>
+              <div class="scene-timer">
+                <span class="scene-timer__value" data-lead-timer>00:37</span>
+                <span class="scene-timer__label">SEM CORRETOR</span>
+              </div>
+            </div>
+
             <h3 class="hole-card__title">Chega e ninguém vê</h3>
             <p class="hole-card__text">
               O lead entra às 21h, pelo anúncio ou pelo WhatsApp. O gestor precisa distribuir
@@ -129,6 +179,27 @@
 
           <article class="hole-card spotlight-card" data-reveal>
             <span class="hole-card__number">02</span>
+
+            <div class="hole-scene hole-scene--bars" aria-hidden="true">
+              <div class="scene-bars">
+                <div class="scene-bar-col">
+                  <div class="scene-bar-track"><div class="scene-bar" style="--bar-h: 100%"></div></div>
+                  <span class="scene-bar-col__count">40</span>
+                  <span class="scene-bar-col__label">Corretor A</span>
+                </div>
+                <div class="scene-bar-col">
+                  <div class="scene-bar-track"><div class="scene-bar" style="--bar-h: 2%"></div></div>
+                  <span class="scene-bar-col__count">0</span>
+                  <span class="scene-bar-col__label">Corretor B</span>
+                </div>
+                <div class="scene-bar-col">
+                  <div class="scene-bar-track"><div class="scene-bar" style="--bar-h: 8%"></div></div>
+                  <span class="scene-bar-col__count">3</span>
+                  <span class="scene-bar-col__label">Corretor C</span>
+                </div>
+              </div>
+            </div>
+
             <h3 class="hole-card__title">Cai sempre no mesmo corretor</h3>
             <p class="hole-card__text">
               Um está com 40 leads parados, outro não recebeu nenhum essa semana. Não é
@@ -138,6 +209,14 @@
 
           <article class="hole-card spotlight-card" data-reveal>
             <span class="hole-card__number">03</span>
+
+            <div class="hole-scene hole-scene--chaos" aria-hidden="true">
+              <span class="scene-chaos-card">Lead: Alphaville</span>
+              <span class="scene-bubble scene-bubble--1">Acho que Carlos tá falando</span>
+              <span class="scene-bubble scene-bubble--2">Não era da Maria?</span>
+              <span class="scene-bubble scene-bubble--3">Vou olhar aqui</span>
+            </div>
+
             <h3 class="hole-card__title">Ninguém sabe em que etapa está</h3>
             <p class="hole-card__text">
               O gestor pergunta “e aquele lead do Alphaville?” e a resposta é “acho que o

@@ -66,6 +66,13 @@
   animation-play-state: running;
 }
 
+/* ---------- Problema: pulso do alerta na linha de vida do lead ---------- */
+
+@keyframes alert-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(1.15); }
+}
+
 /* ---------- Acessibilidade: sem movimento para quem pediu ---------- */
 
 @media (prefers-reduced-motion: reduce) {

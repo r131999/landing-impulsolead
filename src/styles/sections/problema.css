@@ -1,5 +1,24 @@
+/* Menos padding no topo — some do vazio excessivo entre hero e problema,
+   a mudança de tom já é percebida pelo gradiente de fundo (layout.css). */
+#problema {
+  padding-top: var(--space-lg);
+}
+
 .problem__inner {
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .problem__inner {
+    grid-template-columns: 1.05fr 1fr;
+  }
+}
+
+.problem__copy {
+  max-width: 58ch;
 }
 
 .problem__title {
@@ -18,4 +37,129 @@
   font-size: 1.125rem;
   font-weight: var(--weight-body-strong);
   color: var(--color-text);
+}
+
+/* --- Linha de vida do lead: diagrama vertical, não é conteúdo novo pro
+   leitor de tela (aria-hidden), a copy já diz tudo em prosa. --- */
+
+.lead-timeline {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, var(--card-gradient-end) 100%);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevated);
+}
+
+.lead-timeline__node {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms var(--ease-standard), transform 500ms var(--ease-standard);
+}
+
+[data-reveal].is-visible .lead-timeline__node {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal].is-visible .lead-timeline__node:nth-child(1) { transition-delay: 0ms; }
+[data-reveal].is-visible .lead-timeline__node:nth-child(3) { transition-delay: 90ms; }
+[data-reveal].is-visible .lead-timeline__node:nth-child(5) { transition-delay: 180ms; }
+[data-reveal].is-visible .lead-timeline__node:nth-child(7) { transition-delay: 270ms; }
+[data-reveal].is-visible .lead-timeline__node:nth-child(9) { transition-delay: 360ms; }
+[data-reveal].is-visible .lead-timeline__node:nth-child(11) { transition-delay: 450ms; }
+
+.lead-timeline__connector {
+  width: 1px;
+  height: 18px;
+  margin-left: 5px;
+  background: var(--color-border-strong);
+}
+
+.lead-timeline__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Preenchido: aconteceu, e aconteceu certo — único lugar do diagrama que
+   usa o verde (reservado pra "sucesso"), fora daqui é só peso tipográfico. */
+.lead-timeline__node--done .lead-timeline__dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+/* Vazio: neutro, nem bom nem ruim ainda — só esperando */
+.lead-timeline__node--waiting .lead-timeline__dot {
+  background: transparent;
+  border: 1.5px solid var(--color-text-muted);
+}
+
+.lead-timeline__label {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.lead-timeline__node--waiting .lead-timeline__label {
+  color: var(--color-text-muted);
+}
+
+.lead-timeline__time {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.lead-timeline__node--source .lead-timeline__label,
+.lead-timeline__node--loss .lead-timeline__label {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-heading-strong);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lead-timeline__node--source .lead-timeline__label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Alerta: sem cor nova — o peso e o tamanho é que carregam a urgência */
+.lead-timeline__node--alert {
+  gap: var(--space-2xs);
+}
+
+.lead-timeline__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-text);
+  animation: alert-pulse 2.2s ease-in-out infinite;
+}
+
+.lead-timeline__node--alert .lead-timeline__label {
+  font-weight: var(--weight-heading);
+  color: var(--color-text);
+}
+
+/* Momento de impacto tipográfico da seção */
+.lead-timeline__node--loss .lead-timeline__label {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-timeline__node {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lead-timeline__icon {
+    animation: none;
+  }
 }

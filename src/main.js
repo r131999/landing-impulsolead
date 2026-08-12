@@ -12,7 +12,6 @@ import './styles/sections/objecao.css';
 import './styles/sections/prova-social.css';
 import './styles/sections/para-quem-e.css';
 import './styles/sections/cta-form.css';
-import './styles/theme-light.css';
 
 import { initScrollReveal } from './modules/scrollReveal.js';
 import { initHeroCardAnimation } from './modules/heroCardAnimation.js';
@@ -20,6 +19,8 @@ import { initDistributionAnimation } from './modules/distributionAnimation.js';
 import { initSmoothScroll } from './modules/smoothScroll.js';
 import { initContactForm } from './modules/form.js';
 import { initSpotlightCards, initHeroParallax } from './modules/interactiveEffects.js';
+import { initScrollHeader } from './modules/scrollHeader.js';
+import { initLeadTimer } from './modules/leadTimer.js';
 
 function init() {
   initScrollReveal();
@@ -29,6 +30,8 @@ function init() {
   initContactForm();
   initSpotlightCards();
   initHeroParallax();
+  initScrollHeader();
+  initLeadTimer();
 
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

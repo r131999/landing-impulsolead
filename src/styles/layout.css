@@ -112,6 +112,30 @@ section {
   border: 1px solid var(--color-border-strong);
 }
 
+/* Ação sólida: fundo verde, texto escuro — usado onde o CTA precisa parecer
+   ação de verdade (hoje só o header), não a inversão neutra do --btn--primary. */
+.btn--accent {
+  --sweep-color: rgba(11, 17, 32, 0.16);
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn--accent::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  z-index: -1;
+  background: var(--color-accent-glow);
+  filter: blur(18px);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-standard);
+}
+
+.btn--accent:hover::before {
+  opacity: 1;
+}
+
 .btn--large {
   padding: var(--space-sm) var(--space-lg);
   font-size: 1rem;
@@ -124,13 +148,21 @@ section {
 
 /* --- Topbar --- */
 
+/* Nasce transparente sobre o hero — só ganha fundo/blur/borda depois que o
+   usuário começa a rolar (classe alternada por src/modules/scrollHeader.js). */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 50;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 250ms var(--ease-standard), border-color 250ms var(--ease-standard);
+}
+
+.topbar.is-scrolled {
   background: var(--topbar-bg);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 .topbar__inner {
@@ -144,8 +176,8 @@ section {
 .topbar__brand {
   font-family: var(--font-heading);
   font-weight: var(--weight-heading-strong);
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
 }
 
 /* --- Footer --- */

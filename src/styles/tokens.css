@@ -22,11 +22,18 @@
   --glow-soft: rgba(241, 245, 249, 0.08);
   --shadow-elevated: 0 24px 48px -20px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-frame: 0 40px 80px -24px rgba(0, 0, 0, 0.65), 0 8px 24px rgba(0, 0, 0, 0.4);
+  /* Pra elementos que precisam parecer flutuando bem acima da superfície
+     (mais profunda que --shadow-frame) — hoje só o lead-card do hero. */
+  --shadow-float: 0 48px 96px -20px rgba(0, 0, 0, 0.75), 0 16px 32px -8px rgba(0, 0, 0, 0.55);
 
-  /* Tons decorativos usados em gradientes/texturas — extraídos pra token pra
-     poderem ser sobrescritos por tema (ver src/styles/theme-light.css). Os
-     valores abaixo são exatamente os hardcoded que já existiam, então isso
-     não muda nada visualmente no tema escuro (padrão). */
+  /* Azul translúcido de baixa opacidade, só pra luz radial atrás do
+     screenshot do hero (junto com --color-accent-glow, verde). Não é
+     "espalhar cor nova" pela paleta — é escopo único e intencional. */
+  --glow-blue: rgba(56, 130, 246, 0.16);
+
+  /* Tons decorativos usados em gradientes/texturas — extraídos pra token
+     reutilizável entre seções. Não são exclusivos de nenhuma variação de
+     tema. */
   --tone-blend: #17212f;
   --body-wash: #0d1631;
   --card-gradient-end: #16202f;
