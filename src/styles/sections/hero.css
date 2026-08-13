@@ -189,9 +189,9 @@
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
-  /* Mais profunda que o padrão de card — precisa parecer que saiu da
-     interface e está flutuando bem acima dela, não só levemente elevada. */
-  box-shadow: var(--shadow-float);
+  /* Mais profunda que o padrão de card, com uma camada extra bem difusa por
+     baixo — reforça que ele saiu da interface, não só está sobreposto nela. */
+  box-shadow: var(--shadow-float), 0 60px 90px -30px rgba(0, 0, 0, 0.55);
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -219,4 +219,15 @@
   font-weight: var(--weight-body-strong);
   color: var(--color-bg);
   background: var(--color-accent);
+}
+
+/* Em telas largas, empurra o card mais pra fora do frame (canto superior
+   direito) — reforça "emergindo da interface" em vez de "sobreposto nela".
+   Só a partir daqui: no mobile o posicionamento original já é seguro contra
+   overflow horizontal, não mexe. */
+@media (min-width: 760px) {
+  .lead-card {
+    top: 6%;
+    left: 66%;
+  }
 }

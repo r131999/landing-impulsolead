@@ -1,29 +1,47 @@
 .holes__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-xl);
 }
 
 @media (min-width: 720px) {
   .holes__grid {
     grid-template-columns: repeat(3, 1fr);
+    /* Sem gap — a separação entre colunas passa a ser o divisor abaixo,
+       não espaço em branco. */
+    gap: 0;
   }
 }
 
+/* Não é mais um card: sem fundo, borda ou sombra própria — vira só um
+   contêiner de layout. A separação entre os três é um divisor bem sutil
+   (linha, não caixa), vertical no desktop e horizontal empilhado no mobile. */
 .hole-card {
-  padding: var(--space-lg);
-  background: linear-gradient(160deg, var(--color-bg-elevated) 0%, var(--card-gradient-end) 100%);
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-elevated);
-  transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard),
-              border-color 280ms var(--ease-standard);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
 }
 
-.hole-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-frame);
-  border-color: var(--color-border-strong);
+.hole-card:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+@media (min-width: 720px) {
+  .hole-card {
+    padding-top: 0;
+    border-top: none;
+    padding-left: var(--space-lg);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .hole-card:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .hole-card:last-child {
+    padding-right: var(--space-lg);
+  }
 }
 
 .hole-card__number {
@@ -62,9 +80,9 @@
 .scene-lead-card {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 168px;
-  padding: var(--space-xs) var(--space-sm);
+  gap: 3px;
+  min-width: 190px;
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
@@ -72,19 +90,19 @@
 }
 
 .scene-lead-card__time {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--color-text-muted);
 }
 
 .scene-lead-card__name {
   font-family: var(--font-heading);
   font-weight: var(--weight-heading);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text);
 }
 
 .scene-lead-card__project {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
 }
 
@@ -144,7 +162,10 @@
   align-items: flex-end;
   width: 100%;
   max-width: 36px;
-  height: 86px;
+  height: 96px;
+  /* Linha de base sob as três colunas — dá "chão" ao conjunto e mantém o
+     Corretor B (0 leads) presente na composição mesmo sem barra visível. */
+  border-bottom: 1.5px solid var(--color-border-strong);
 }
 
 .scene-bar {
@@ -163,12 +184,12 @@
 .scene-bar-col__count {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text);
 }
 
 .scene-bar-col__label {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--color-text-muted);
 }
 
@@ -209,9 +230,9 @@
   color: var(--color-text-muted);
 }
 
-.scene-bubble--1 { top: 10%; left: 4%; transform: rotate(-6deg); }
-.scene-bubble--2 { top: 12%; right: 4%; transform: rotate(4deg); }
-.scene-bubble--3 { bottom: 8%; left: 26%; transform: rotate(-3deg); }
+.scene-bubble--1 { top: 5%; left: 2%; transform: rotate(-9deg); }
+.scene-bubble--2 { top: 20%; right: 6%; transform: rotate(7deg); }
+.scene-bubble--3 { bottom: 4%; left: 32%; transform: rotate(-4deg); }
 
 @media (prefers-reduced-motion: reduce) {
   .scene-bar {
@@ -234,4 +255,10 @@
   font-weight: var(--weight-heading);
   font-family: var(--font-heading);
   color: var(--color-text);
+}
+
+/* Menos vazio antes de "Como resolve" que o padrão de seção — sem eliminar
+   a sensação de troca de etapa da narrativa (#como-resolve não é tocado). */
+#onde-se-perde {
+  padding-bottom: var(--space-xl);
 }
